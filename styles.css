@@ -193,14 +193,13 @@ body.cart-open { overflow: hidden; }
 .hero-store::after {
   content: "";
   position: absolute;
-  width: 52%;
-  height: 100%;
-  right: 0;
-  top: 0;
-  background:
-    linear-gradient(90deg, transparent, rgba(255, 255, 255, .08)),
-    url("assets/banner-2.jpeg") center/cover;
-  opacity: .12;
+  width: 44%;
+  height: 70%;
+  right: -14%;
+  top: 8%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(103, 216, 177, .22), transparent 68%);
+  opacity: .9;
 }
 
 .hero-store-grid {
@@ -311,8 +310,7 @@ h1, h2, h3, h4 { margin: 0; }
   backdrop-filter: blur(12px);
 }
 
-.showcase-head,
-.showcase-foot {
+.showcase-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -320,8 +318,7 @@ h1, h2, h3, h4 { margin: 0; }
   padding: 0 4px 12px;
 }
 
-.showcase-head span,
-.showcase-foot span {
+.showcase-head span {
   color: rgba(255, 255, 255, .78);
   font-size: 12px;
   font-weight: 800;
@@ -331,12 +328,6 @@ h1, h2, h3, h4 { margin: 0; }
   color: #fff;
   font-family: Sora, sans-serif;
   font-size: 15px;
-}
-
-.showcase-foot {
-  padding: 12px 4px 0;
-  justify-content: center;
-  text-align: center;
 }
 
 .banner-slider {
