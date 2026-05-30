@@ -15,6 +15,8 @@ const cartItems = document.querySelector('.cart-items');
 const cartCount = document.querySelector('.cart-count');
 const cartTotal = document.querySelector('.cart-total');
 const cartWhatsapp = document.querySelector('.cart-whatsapp');
+const contactForm = document.querySelector('.contact-form');
+const whatsappNumber = '5527999047362';
 
 let currentSlide = 0;
 let sliderTimer;
@@ -146,7 +148,7 @@ function updateWhatsappLink() {
   if (!cartWhatsapp) return;
 
   if (!cart.size) {
-    cartWhatsapp.href = 'https://wa.me/5527999999999';
+    cartWhatsapp.href = `https://wa.me/${whatsappNumber}`;
     return;
   }
 
@@ -160,7 +162,7 @@ function updateWhatsappLink() {
     `Subtotal estimado: ${money.format(total)}`
   ].join('\n');
 
-  cartWhatsapp.href = `https://wa.me/5527999999999?text=${encodeURIComponent(message)}`;
+  cartWhatsapp.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
 function renderCart() {
@@ -242,6 +244,21 @@ cartDrawer?.addEventListener('click', (event) => {
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeCart();
+});
+
+contactForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(contactForm);
+  const message = [
+    'Ola, NutriES. Vim pelo site e gostaria de atendimento comercial.',
+    `Nome: ${formData.get('nome')}`,
+    `Farmacia/Empresa: ${formData.get('empresa')}`,
+    `Telefone: ${formData.get('telefone')}`,
+    `Mensagem: ${formData.get('mensagem') || 'Nao informada'}`
+  ].join('\n');
+
+  window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
 });
 
 if (slides.length) {
