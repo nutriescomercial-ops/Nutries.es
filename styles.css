@@ -250,20 +250,26 @@ h1, h2, h3, h4 { margin: 0; }
 .banner-slider {
   position: relative;
   width: 100%;
-  height: clamp(260px, 34vw, 410px);
+  aspect-ratio: 16 / 9;
+  min-height: 240px;
+  max-height: 410px;
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, .36);
   box-shadow: 0 22px 46px rgba(0, 0, 0, .24);
-  background: #0d2f52;
+  background:
+    linear-gradient(135deg, rgba(5, 31, 54, .96), rgba(10, 71, 95, .96)),
+    radial-gradient(circle at 82% 18%, rgba(103, 216, 177, .28), transparent 34%);
 }
 
 .banner-slide {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  inset: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  object-fit: contain;
+  object-position: center;
+  border-radius: 12px;
   opacity: 0;
   transition: opacity .7s ease;
 }
@@ -855,6 +861,10 @@ h1, h2, h3, h4 { margin: 0; }
   .nav { grid-template-columns: 1fr auto auto; }
   .brand img { height: 50px; }
   .cart-button { padding: 10px; }
+  .banner-slider {
+    aspect-ratio: 4 / 3;
+    min-height: 230px;
+  }
   .store-stats { grid-template-columns: 1fr; }
   .product-actions { grid-template-columns: 1fr; }
   .whatsapp-float { right: 12px; bottom: 12px; }
