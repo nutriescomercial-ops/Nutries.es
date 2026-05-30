@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NutriES Web Store | Vitaminas, suplementos e nutraceuticos</title>
+  <meta name="description" content="Compre vitaminas, suplementos e produtos naturais na NutriES Web Store. Mix inteligente para farmacias, revendedores e clientes finais." />
+  <meta name="keywords" content="NutriES, web store, vitaminas, suplementos, nutraceuticos, farmacia, revenda" />
+  <meta name="author" content="NutriES Web Store" />
+  <meta property="og:title" content="NutriES Web Store" />
+  <meta property="og:description" content="Produtos de alto giro para saude, bem-estar e canal farma." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nutries-es.com.br" />
+  <meta name="theme-color" content="#0D3B4D" />
+  <link rel="canonical" href="https://nutries-es.com.br" />
+  <link rel="preload" as="image" href="assets/banner-1.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "NutriES Web Store",
+      "url": "https://nutries-es.com.br",
+      "description": "Loja de vitaminas, suplementos e nutraceuticos para clientes, farmacias e revendedores.",
+      "image": "assets/logo-oficial.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "email": "nutriescomercial@gmail.com",
+        "telephone": "+55-27-99999-9999"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="announcement">
+      <div class="container announcement-inner">
+        <span>Entrega nacional via marketplace</span>
+        <span>Atendimento para farmacias e revendedores</span>
+        <span>Compra segura no Mercado Livre</span>
+      </div>
+    </div>
+
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="NutriES Web Store">
+        <img src="assets/logo-oficial.png" alt="NutriES Web Store" />
+      </a>
+
+      <label class="store-search" for="siteSearch">
+        <span>Buscar</span>
+        <input id="siteSearch" type="search" placeholder="Produto, categoria ou beneficio" autocomplete="off" />
+      </label>
+
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">Menu</button>
+
+      <nav class="menu" aria-label="Principal">
+        <a href="#produtos">Produtos</a>
+        <a href="#kits">Kits</a>
+        <a href="#revenda">Revenda</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <button class="cart-button" type="button" aria-label="Abrir carrinho">
+        Carrinho <span class="cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero-store">
+      <div class="container hero-store-grid">
+        <div class="hero-copy reveal-up">
+          <p class="eyebrow">NUTRIES WEB STORE</p>
+          <h1>Saude, energia e bem-estar em uma loja feita para vender mais.</h1>
+          <p class="subheadline">Compre produtos NutriES para sua rotina ou monte um mix de alto giro para sua farmacia. Selecionamos itens com demanda recorrente, boa margem e links de compra direta.</p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#produtos">Ver produtos</a>
+            <a class="btn btn-secondary" href="#revenda">Comprar para revenda</a>
+          </div>
+
+          <div class="store-stats" aria-label="Indicadores da loja">
+            <article><strong>6</strong><span>produtos em destaque</span></article>
+            <article><strong>72h</strong><span>reposicao media</span></article>
+            <article><strong>98%</strong><span>indice de recompra</span></article>
+          </div>
+        </div>
+
+        <div class="hero-showcase reveal-up">
+          <div class="banner-slider" aria-label="Destaques de produtos">
+            <img class="banner-slide is-active" src="assets/banner-1.jpeg" alt="Destaque NutriES 1" loading="eager" />
+            <img class="banner-slide" src="assets/banner-2.jpeg" alt="Destaque NutriES 2" loading="lazy" />
+            <img class="banner-slide" src="assets/banner-3.jpeg" alt="Destaque NutriES 3" loading="lazy" />
+          </div>
+          <div class="banner-dots" aria-label="Controle do carrossel">
+            <button class="banner-dot is-active" data-slide="0" aria-label="Slide 1"></button>
+            <button class="banner-dot" data-slide="1" aria-label="Slide 2"></button>
+            <button class="banner-dot" data-slide="2" aria-label="Slide 3"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="category-strip">
+      <div class="container category-grid">
+        <a href="#produtos" data-filter-link="vitaminas">
+          <strong>Vitaminas</strong>
+          <span>Imunidade, energia e rotina diaria</span>
+        </a>
+        <a href="#produtos" data-filter-link="suplementos">
+          <strong>Suplementos</strong>
+          <span>Performance, antioxidantes e articulacoes</span>
+        </a>
+        <a href="#produtos" data-filter-link="naturais">
+          <strong>Naturais</strong>
+          <span>Hidratacao, equilibrio e bem-estar</span>
+        </a>
+        <a href="#kits">
+          <strong>Kits para farmacia</strong>
+          <span>Mix pronto para comecar a revender</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="produtos" class="section section-products">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <div>
+            <p class="eyebrow">COMPRE AGORA</p>
+            <h2>Produtos em destaque</h2>
+          </div>
+          <p>Escolha os itens, monte seu carrinho de cotacao ou compre direto no Mercado Livre.</p>
+        </div>
+
+        <div class="store-toolbar reveal-up">
+          <div class="filters" role="tablist" aria-label="Filtrar produtos">
+            <button class="filter is-active" data-filter="all">Todos</button>
+            <button class="filter" data-filter="vitaminas">Vitaminas</button>
+            <button class="filter" data-filter="suplementos">Suplementos</button>
+            <button class="filter" data-filter="naturais">Naturais</button>
+          </div>
+          <div class="catalog-meta">
+            <span class="result-count">6 produtos</span>
+          </div>
+        </div>
+
+        <div class="products-grid">
+          <article class="product-card reveal-up" data-category="vitaminas" data-name="Vitaxon C Efervescente" data-price="29.90" data-tags="vitamina c zinco imunidade efervescente laranja">
+            <span class="product-badge">Mais buscado</span>
+            <img src="assets/produto-vendas-1.jpeg" alt="Vitaxon C Efervescente" loading="lazy" />
+            <div class="product-info">
+              <p class="product-category">Vitaminas</p>
+              <h3>Vitaxon C Efervescente</h3>
+              <p>Vitamina C com zinco para imunidade e energia no dia a dia.</p>
+              <div class="product-meta"><span>10 comprimidos</span><span>Pronta entrega</span></div>
+              <strong class="price">R$ 29,90</strong>
+            </div>
+            <div class="product-actions">
+              <button class="add-cart" type="button">Adicionar</button>
+              <a href="https://www.mercadolivre.com.br/suplemento-nutricional-vitamina-c-airela-efervescente-laranja-10-comprimidos/p/MLB19708218?pdp_filters=item_id%3AMLB4679975577&matt_tool=38524122#origin=share&sid=share&wid=MLB4679975577&action=copy" target="_blank" rel="noopener noreferrer">Comprar</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal-up" data-category="suplementos" data-name="Coenzima Q10 100mg" data-price="79.90" data-tags="coenzima q10 antioxidante cardiovascular energia suplemento">
+            <span class="product-badge badge-blue">Premium</span>
+            <img src="assets/produto-vendas-2.jpeg" alt="Coenzima Q10 100mg" loading="lazy" />
+            <div class="product-info">
+              <p class="product-category">Suplementos</p>
+              <h3>Coenzima Q10 100mg</h3>
+              <p>Suporte antioxidante e cardiovascular com alta percepcao de valor.</p>
+              <div class="product-meta"><span>60 capsulas</span><span>Alto ticket</span></div>
+              <strong class="price">R$ 79,90</strong>
+            </div>
+            <div class="product-actions">
+              <button class="add-cart" type="button">Adicionar</button>
+              <a href="https://produto.mercadolivre.com.br/MLB-6775682984-suplemento-alimentar-coenzima-q10-100mg-60-capsulas-airela-_JM?matt_tool=38524122#origin=share&sid=share&action=copy" target="_blank" rel="noopener noreferrer">Comprar</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal-up" data-category="naturais" data-name="Soro Flux Isotonico" data-price="18.90" data-tags="soro flux isotonico hidratacao eletrolitos energia">
+            <span class="product-badge badge-green">Giro rapido</span>
+            <img src="assets/produto-vendas-3.jpeg" alt="Soro Flux isotonico" loading="lazy" />
+            <div class="product-info">
+              <p class="product-category">Naturais</p>
+              <h3>Soro Flux Isotonico</h3>
+              <p>Reposicao rapida, sem acucar e excelente giro no ponto de venda.</p>
+              <div class="product-meta"><span>500 ml</span><span>Sem acucar</span></div>
+              <strong class="price">R$ 18,90</strong>
+            </div>
+            <div class="product-actions">
+              <button class="add-cart" type="button">Adicionar</button>
+              <a href="https://produto.mercadolivre.com.br/MLB-4632212955-soroflux-isotnico-500ml-eletrolitos-hidrataco-energia-rep-_JM?matt_tool=38524122#origin=share&sid=share&action=copy" target="_blank" rel="noopener noreferrer">Comprar</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal-up" data-category="suplementos" data-name="Condroflan Curcuma Artix" data-price="89.90" data-tags="condroflan curcuma artix colageno acido hialuronico articulacao">
+            <span class="product-badge badge-amber">Articulacoes</span>
+            <img src="assets/produto-vendas-4.jpeg" alt="Condroflan Curcuma Artix" loading="lazy" />
+            <div class="product-info">
+              <p class="product-category">Suplementos</p>
+              <h3>Condroflan Curcuma Artix</h3>
+              <p>Foco em mobilidade e saude articular para publico adulto.</p>
+              <div class="product-meta"><span>30 capsulas</span><span>Uso diario</span></div>
+              <strong class="price">R$ 89,90</strong>
+            </div>
+            <div class="product-actions">
+              <button class="add-cart" type="button">Adicionar</button>
+              <a href="https://produto.mercadolivre.com.br/MLB-6777039048-suplemento-colageno-tipo-2-acido-hialurnico-c30-airela-_JM?matt_tool=38524122#origin=share&sid=share&action=copy" target="_blank" rel="noopener noreferrer">Comprar</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal-up" data-category="vitaminas" data-name="Leflora Probiotico" data-price="42.90" data-tags="leflora probiotico equilibrio intestinal capsulas flora intestinal">
+            <span class="product-badge badge-green">Recompra</span>
+            <img src="assets/produto-vendas-5.jpeg" alt="Leflora probiotico" loading="lazy" />
+            <div class="product-info">
+              <p class="product-category">Vitaminas</p>
+              <h3>Leflora Probiotico</h3>
+              <p>Equilibrio intestinal com forte demanda e recompra frequente.</p>
+              <div class="product-meta"><span>12 capsulas</span><span>Rotina diaria</span></div>
+              <strong class="price">R$ 42,90</strong>
+            </div>
+            <div class="product-actions">
+              <button class="add-cart" type="button">Adicionar</button>
+              <a href="https://www.mercadolivre.com.br/leflora-lac-airela-12-capsulas/p/MLB45753103?pdp_filters=item_id%3AMLB4680148781&matt_tool=38524122#origin=share&sid=share&wid=MLB4680148781&action=copy" target="_blank" rel="noopener noreferrer">Comprar</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal-up" data-category="naturais" data-name="B12 Concentrado" data-price="54.90" data-tags="b12 metilcobalamina concentrado energia neurologico vitamina">
+            <span class="product-badge badge-blue">Energia</span>
+            <img src="assets/produto-vendas-6.jpeg" alt="B12 concentrado metilcobalamina" loading="lazy" />
+            <div class="product-info">
+              <p class="product-category">Naturais</p>
+              <h3>B12 Concentrado</h3>
+              <p>Metilcobalamina de alta dose para energia e suporte neurologico.</p>
+              <div class="product-meta"><span>60 capsulas</span><span>Alta dose</span></div>
+              <strong class="price">R$ 54,90</strong>
+            </div>
+            <div class="product-actions">
+              <button class="add-cart" type="button">Adicionar</button>
+              <a href="https://www.mercadolivre.com.br/metilcobalamina-b12-concentrado-c60-capsulas-airela-sabor-sem-sabor/p/MLB51698366?pdp_filters=item_id%3AMLB6777466114&matt_tool=38524122#origin=share&sid=share&wid=MLB6777466114&action=copy" target="_blank" rel="noopener noreferrer">Comprar</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="empty-state" hidden>Nenhum produto encontrado para sua busca.</p>
+      </div>
+    </section>
+
+    <section id="kits" class="section kit-section">
+      <div class="container kit-grid">
+        <article class="kit-copy reveal-up">
+          <p class="eyebrow">KITS DE REVENDA</p>
+          <h2>Monte um mix que faz sentido para o seu balcao.</h2>
+          <p>Comece por produtos de recompra, complemente com itens de ticket medio maior e mantenha opcoes de uso diario para gerar recorrencia.</p>
+          <a class="btn btn-primary" href="#contato">Solicitar mix personalizado</a>
+        </article>
+
+        <div class="kit-cards reveal-up">
+          <article>
+            <span>Essencial</span>
+            <strong>12 unidades</strong>
+            <p>Entrada enxuta para testar giro e demanda local.</p>
+          </article>
+          <article>
+            <span>Farmacia ativa</span>
+            <strong>36 unidades</strong>
+            <p>Reposicao equilibrada entre vitaminas, naturais e suplementos.</p>
+          </article>
+          <article>
+            <span>Alta performance</span>
+            <strong>72 unidades</strong>
+            <p>Mix completo para campanhas, gondola e venda assistida.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="revenda" class="section">
+      <div class="container reseller-grid reveal-up">
+        <div>
+          <p class="eyebrow">PARA FARMACIAS</p>
+          <h2>Venda mais com uma vitrine de produtos que o cliente entende rapido.</h2>
+        </div>
+        <div class="reseller-list">
+          <article>
+            <strong>Curadoria comercial</strong>
+            <p>Produtos escolhidos por giro, recompra, ticket e aderencia ao canal farma.</p>
+          </article>
+          <article>
+            <strong>Compra facilitada</strong>
+            <p>Links diretos para marketplaces e carrinho de cotacao por WhatsApp.</p>
+          </article>
+          <article>
+            <strong>Mix por objetivo</strong>
+            <p>Opcoes para imunidade, energia, hidratacao, articulacoes e equilibrio intestinal.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="section contact-section">
+      <div class="container contact-grid">
+        <article class="contact-cta reveal-up">
+          <p class="eyebrow">ATENDIMENTO NUTRIES</p>
+          <h2>Quer comprar em volume ou falar com um consultor?</h2>
+          <p>Envie sua necessidade e receba uma recomendacao de mix para sua loja, farmacia ou rotina de consumo.</p>
+          <a class="btn btn-whatsapp" href="https://wa.me/5527999999999" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+        </article>
+
+        <form class="contact-form reveal-up" action="#" method="post">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" type="text" placeholder="Seu nome" required />
+
+          <label for="empresa">Farmacia/Empresa</label>
+          <input id="empresa" name="empresa" type="text" placeholder="Nome da farmacia ou empresa" required />
+
+          <label for="telefone">Telefone</label>
+          <input id="telefone" name="telefone" type="tel" placeholder="(00) 00000-0000" required />
+
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="4" placeholder="Conte o que voce procura"></textarea>
+
+          <button class="btn btn-primary" type="submit">Enviar contato</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <aside class="cart-drawer" aria-hidden="true" aria-label="Carrinho de cotacao">
+    <div class="cart-panel">
+      <div class="cart-head">
+        <div>
+          <p class="eyebrow">COTACAO</p>
+          <h2>Meu carrinho</h2>
+        </div>
+        <button class="cart-close" type="button" aria-label="Fechar carrinho">Fechar</button>
+      </div>
+      <div class="cart-items">
+        <p class="cart-empty">Seu carrinho esta vazio.</p>
+      </div>
+      <div class="cart-summary">
+        <div><span>Subtotal estimado</span><strong class="cart-total">R$ 0,00</strong></div>
+        <a class="btn btn-whatsapp cart-whatsapp" href="https://wa.me/5527999999999" target="_blank" rel="noopener noreferrer">Enviar cotacao</a>
+      </div>
+    </div>
+  </aside>
+
+  <a class="whatsapp-float" href="https://wa.me/5527999999999" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">WhatsApp</a>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="assets/logo-oficial.png" alt="NutriES Web Store" class="footer-brand footer-brand-official" />
+        <p>Web store de vitaminas, suplementos e nutraceuticos para consumo e revenda.</p>
+      </div>
+      <div>
+        <h4>Loja</h4>
+        <a href="#produtos">Produtos</a>
+        <a href="#kits">Kits de revenda</a>
+        <a href="#revenda">Canal farma</a>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <a href="mailto:nutriescomercial@gmail.com">nutriescomercial@gmail.com</a>
+        <a href="https://wa.me/5527999999999" target="_blank" rel="noopener noreferrer">WhatsApp comercial</a>
+      </div>
+    </div>
+    <p class="copy">&copy; 2026 NutriES Web Store. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

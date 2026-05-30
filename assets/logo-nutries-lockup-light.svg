@@ -1,0 +1,9 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="760" height="240" viewBox="0 0 760 240">
+  <rect width="760" height="240" fill="none"/>
+  <g transform="translate(18,14)">
+    <path d="M70 98c0-39 32-71 71-71 25 0 47 13 59 33 11-20 33-33 58-33 39 0 71 32 71 71 0 23-11 44-30 57l-50 35-47-3-44-29c-23-15-38-35-38-60z" fill="#69e3bf"/>
+    <path d="M89 112c0-29 24-53 53-53h31c10 0 18 8 18 18v22h28c10 0 18 8 18 18v28c0 10-8 18-18 18h-26v24c0 11-11 19-22 14l-34-17c-29-14-48-43-48-72z" fill="#35a6db"/>
+  </g>
+  <text x="360" y="156" font-family="Manrope, Arial, sans-serif" font-size="112" font-weight="700" fill="#eaf3ff">NutriES</text>
+  <text x="364" y="212" font-family="Manrope, Arial, sans-serif" font-size="58" font-weight="500" fill="#cfe1ff" letter-spacing="2">WEBSTORE</text>
+</svg>

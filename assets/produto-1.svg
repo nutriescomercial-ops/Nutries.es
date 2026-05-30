@@ -1,0 +1,7 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' width='360' height='280' viewBox='0 0 360 280'>
+<rect width='360' height='280' fill='white'/>
+<rect x='95' y='38' width='170' height='34' rx='12' fill='#dfe9f6'/>
+<rect x='80' y='62' width='200' height='190' rx='24' fill='url(#g)' stroke='#d9e7f4'/>
+<defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#fff'/><stop offset='1' stop-color='#edf5ff'/></linearGradient></defs>
+<text x='100' y='165' font-family='Arial' font-size='26' font-weight='700' fill='#1b8f64'>CÚRCUMA</text>
+</svg>

@@ -1,0 +1,26 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="1" stop-color="#d8ebff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#g1)"/>
+  <circle cx="1120" cy="130" r="260" fill="none" stroke="#0f95cf" stroke-width="34"/>
+  <circle cx="1160" cy="590" r="230" fill="none" stroke="#1ec8b1" stroke-width="26"/>
+  <g transform="translate(480,150)">
+    <rect x="0" y="65" width="200" height="360" rx="28" fill="#ffffff" stroke="#dce8f6"/>
+    <rect x="18" y="32" width="165" height="50" rx="14" fill="#e4edf7"/>
+    <text x="28" y="265" font-size="56" font-family="Arial" font-weight="700" fill="#1a4f95">ÔMEGA 3</text>
+  </g>
+  <g transform="translate(690,200)">
+    <rect x="0" y="65" width="165" height="325" rx="24" fill="#ffffff" stroke="#dce8f6"/>
+    <rect x="14" y="35" width="136" height="45" rx="12" fill="#dce7f4"/>
+    <text x="16" y="245" font-size="42" font-family="Arial" font-weight="700" fill="#1a4f95">VIT D3</text>
+  </g>
+  <g transform="translate(870,220)">
+    <rect x="0" y="65" width="170" height="310" rx="24" fill="#ffffff" stroke="#dce8f6"/>
+    <rect x="16" y="35" width="140" height="45" rx="12" fill="#dce7f4"/>
+    <text x="20" y="230" font-size="40" font-family="Arial" font-weight="700" fill="#1a7759">MAGNÉSIO</text>
+  </g>
+</svg>
