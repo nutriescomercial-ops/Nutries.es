@@ -57,17 +57,21 @@
 
       <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">Menu</button>
 
-      <nav class="menu" aria-label="Principal">
-        <a href="#produtos">Produtos</a>
-        <a href="#kits">Kits</a>
-        <a href="#revenda">Revenda</a>
-        <a href="#contato">Contato</a>
-      </nav>
+      <a class="header-contact" href="https://wa.me/5527999047362" target="_blank" rel="noopener noreferrer">Precisa de ajuda?<strong>Fale com a NutriES</strong></a>
 
       <button class="cart-button" type="button" aria-label="Abrir carrinho">
         Carrinho <span class="cart-count">0</span>
       </button>
     </div>
+    <nav class="menu" aria-label="Departamentos"><div class="container department-links">
+      <a href="#produtos" data-filter-link="all">Todos os produtos</a>
+      <a href="#produtos" data-filter-link="vitaminas">Vitaminas</a>
+      <a href="#produtos" data-filter-link="suplementos">Suplementos</a>
+      <a href="#produtos" data-filter-link="naturais">Naturais</a>
+      <a href="#kits">Kits de revenda</a>
+      <a href="#revenda">Para sua farm&#225;cia</a>
+      <a href="#contato">Atendimento</a>
+    </div></nav>
   </header>
 
   <main id="home">
@@ -75,33 +79,18 @@
       <div class="container hero-store-grid">
         <div class="hero-copy reveal-up">
           <p class="eyebrow">NUTRIES WEB STORE | CANAL FARMA</p>
-          <h1>Um portfolio de saude pronto para girar no seu balcao.</h1>
-          <p class="subheadline">Vitaminas, suplementos e nutraceuticos com comunicacao clara, compra simples e curadoria comercial para farmacias, distribuidores e empresas que querem vender melhor.</p>
+          <h1>NutriES Web Store</h1>
+          <p class="subheadline">Vitaminas, suplementos e bem-estar. Encontre o cuidado para sua rotina ou monte o mix da sua farm&#225;cia.</p>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#produtos">Conhecer portfolio</a>
             <a class="btn btn-secondary" href="#contato">Falar com comercial</a>
           </div>
 
-          <div class="hero-proof" aria-label="Diferenciais comerciais">
-            <span>Vitrine pronta para apresentacao</span>
-            <span>Produtos de recompra</span>
-            <span>Links de compra e cotacao</span>
-          </div>
-
-          <div class="store-stats" aria-label="Indicadores da loja">
-            <article><strong>6</strong><span>produtos em destaque</span></article>
-            <article><strong>72h</strong><span>reposicao media</span></article>
-            <article><strong>98%</strong><span>indice de recompra</span></article>
-          </div>
         </div>
 
         <div class="hero-showcase reveal-up">
           <div class="showcase-card">
-            <div class="showcase-head">
-              <span>Vitrine em destaque</span>
-              <strong>NutriES Selection</strong>
-            </div>
             <div class="banner-slider" aria-label="Destaques de produtos">
               <img class="banner-slide is-active" src="assets/banner-1.jpeg" alt="Destaque NutriES 1" loading="eager" />
               <img class="banner-slide" src="assets/banner-2.jpeg" alt="Destaque NutriES 2" loading="lazy" />
@@ -118,20 +107,25 @@
     </section>
 
     <section class="category-strip">
+      <div class="container category-title"><div><p class="eyebrow">NUTRIES WEB STORE</p><h2>Seu cuidado come&#231;a aqui.</h2></div><a href="#produtos">Ver todos os produtos</a></div>
       <div class="container category-grid">
         <a href="#produtos" data-filter-link="vitaminas">
+          <img src="assets/produto-vendas-1.jpeg" alt="" loading="lazy" />
           <strong>Vitaminas</strong>
           <span>Imunidade, energia e rotina diaria</span>
         </a>
         <a href="#produtos" data-filter-link="suplementos">
+          <img src="assets/produto-vendas-2.jpeg" alt="" loading="lazy" />
           <strong>Suplementos</strong>
           <span>Performance, antioxidantes e articulacoes</span>
         </a>
         <a href="#produtos" data-filter-link="naturais">
+          <img src="assets/produto-vendas-3.jpeg" alt="" loading="lazy" />
           <strong>Naturais</strong>
           <span>Hidratacao, equilibrio e bem-estar</span>
         </a>
         <a href="#kits">
+          <img src="assets/produto-vendas-4.jpeg" alt="" loading="lazy" />
           <strong>Kits para farmacia</strong>
           <span>Mix pronto para comecar a revender</span>
         </a>
@@ -141,12 +135,12 @@
     <section class="fair-strip" aria-label="Argumentos para feira">
       <div class="container fair-grid">
         <article>
-          <strong>Apresentacao profissional</strong>
-          <span>Layout limpo, legivel e pronto para teloes de feira.</span>
+          <strong>Produtos selecionados</strong>
+          <span>Vitaminas, suplementos e cuidado di&#225;rio.</span>
         </article>
         <article>
           <strong>Venda consultiva</strong>
-          <span>Beneficios claros por produto para acelerar a conversa comercial.</span>
+          <span>Atendimento para montar o mix da sua farm&#225;cia.</span>
         </article>
         <article>
           <strong>Contato imediato</strong>
@@ -166,14 +160,16 @@
         </div>
 
         <div class="store-toolbar reveal-up">
-          <div class="filters" role="tablist" aria-label="Filtrar produtos">
+          <div class="filters" role="group" aria-label="Filtrar produtos">
             <button class="filter is-active" data-filter="all">Todos</button>
             <button class="filter" data-filter="vitaminas">Vitaminas</button>
             <button class="filter" data-filter="suplementos">Suplementos</button>
             <button class="filter" data-filter="naturais">Naturais</button>
           </div>
           <div class="catalog-meta">
-            <span class="result-count">6 produtos</span>
+            <span class="result-count" aria-live="polite">6 produtos</span>
+            <label for="catalogSort">Ordenar</label>
+            <select id="catalogSort"><option value="featured">Destaques</option><option value="price-asc">Menor pre&#231;o</option><option value="price-desc">Maior pre&#231;o</option><option value="name">Nome: A a Z</option></select>
           </div>
         </div>
 
@@ -401,6 +397,7 @@
     <p class="copy">&copy; 2026 NutriES Web Store. Todos os direitos reservados.</p>
   </footer>
 
+  <script src="assets/lucide.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

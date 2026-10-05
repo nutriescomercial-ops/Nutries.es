@@ -17,6 +17,84 @@ const cartTotal = document.querySelector('.cart-total');
 const cartWhatsapp = document.querySelector('.cart-whatsapp');
 const contactForm = document.querySelector('.contact-form');
 const whatsappNumber = '5527999047362';
+const catalogSort = document.querySelector('#catalogSort');
+const productGrid = document.querySelector('.products-grid');
+const featuredOrder = Array.from(cards);
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let carouselPaused = reducedMotion.matches;
+
+function icon(name) {
+  const element = document.createElement('i');
+  element.dataset.lucide = name;
+  return element;
+}
+
+menuToggle?.replaceChildren(icon('menu'));
+const cartLabel = document.createElement('span');
+cartLabel.textContent = 'Minha cotacao';
+cartButton?.replaceChildren(icon('shopping-basket'), cartLabel, cartCount);
+const searchButton = document.createElement('button');
+searchButton.type = 'button';
+searchButton.className = 'search-submit icon-button';
+searchButton.setAttribute('aria-label', 'Buscar produtos');
+searchButton.title = 'Buscar produtos';
+searchButton.append(icon('search'));
+document.querySelector('.store-search')?.append(searchButton);
+searchButton.addEventListener('click', () => document.querySelector('#produtos')?.scrollIntoView());
+searchInput?.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    document.querySelector('#produtos')?.scrollIntoView();
+  }
+});
+
+const slider = document.querySelector('.banner-slider');
+function restartSlider() {
+  clearInterval(sliderTimer);
+  startSlider();
+}
+['prev', 'next'].forEach((direction) => {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = `banner-${direction} icon-button`;
+  button.title = direction === 'prev' ? 'Banner anterior' : 'Proximo banner';
+  button.setAttribute('aria-label', button.title);
+  button.append(icon(direction === 'prev' ? 'chevron-left' : 'chevron-right'));
+  slider?.append(button);
+  button.addEventListener('click', () => {
+    setSlide((currentSlide + (direction === 'prev' ? -1 : 1) + slides.length) % slides.length);
+    restartSlider();
+  });
+});
+const pauseButton = document.createElement('button');
+pauseButton.type = 'button';
+pauseButton.className = 'banner-pause icon-button';
+function updatePauseButton() {
+  pauseButton.setAttribute('aria-pressed', String(carouselPaused));
+  pauseButton.title = carouselPaused ? 'Reproduzir carrossel' : 'Pausar carrossel';
+  pauseButton.setAttribute('aria-label', pauseButton.title);
+  pauseButton.replaceChildren(icon(carouselPaused ? 'play' : 'pause'));
+  window.lucide?.createIcons();
+}
+document.querySelector('.banner-dots')?.append(pauseButton);
+pauseButton.addEventListener('click', () => {
+  carouselPaused = !carouselPaused;
+  updatePauseButton();
+  restartSlider();
+});
+slider?.addEventListener('mouseenter', () => clearInterval(sliderTimer));
+slider?.addEventListener('mouseleave', restartSlider);
+slider?.addEventListener('focusin', () => clearInterval(sliderTimer));
+slider?.addEventListener('focusout', restartSlider);
+updatePauseButton();
+
+catalogSort?.addEventListener('change', () => {
+  const ordered = featuredOrder.slice();
+  if (catalogSort.value === 'price-asc') ordered.sort((a, b) => Number(a.dataset.price) - Number(b.dataset.price));
+  if (catalogSort.value === 'price-desc') ordered.sort((a, b) => Number(b.dataset.price) - Number(a.dataset.price));
+  if (catalogSort.value === 'name') ordered.sort((a, b) => a.dataset.name.localeCompare(b.dataset.name, 'pt-BR'));
+  ordered.forEach((card) => productGrid.append(card));
+});
 
 let currentSlide = 0;
 let sliderTimer;
@@ -80,6 +158,7 @@ function applyCatalogFilters() {
 filters.forEach((button) => {
   button.addEventListener('click', () => {
     filters.forEach((item) => item.classList.remove('is-active'));
+    filters.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
     button.classList.add('is-active');
     activeFilter = button.dataset.filter;
     applyCatalogFilters();
@@ -104,14 +183,15 @@ function setSlide(index) {
   currentSlide = index;
   slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
   dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+  dots.forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === index)));
 }
 
 function startSlider() {
-  if (!slides.length) return;
+  if (!slides.length || carouselPaused || document.hidden) return;
   sliderTimer = setInterval(() => {
     const next = (currentSlide + 1) % slides.length;
     setSlide(next);
-  }, 3800);
+  }, 6500);
 }
 
 dots.forEach((dot) => {
@@ -122,6 +202,8 @@ dots.forEach((dot) => {
     startSlider();
   });
 });
+
+document.addEventListener('visibilitychange', restartSlider);
 
 function productFromCard(card) {
   return {
@@ -268,3 +350,4 @@ if (slides.length) {
 
 applyCatalogFilters();
 renderCart();
+filters.forEach((button) => button.setAttribute('aria-pressed', String(button.classList.contains('is-active'))));
