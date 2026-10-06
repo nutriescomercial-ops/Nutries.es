@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Proprietarios | NutriES</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <header class="admin-header"><a href="/"><img src="assets/logo-oficial.png" alt="NutriES" /></a><strong>Gestao da loja</strong><a href="/">Ver loja <i data-lucide="arrow-up-right"></i></a></header>
+  <main>
+    <p id="status" role="status" aria-live="polite">Conectando...</p>
+    <section id="login" hidden class="login-panel">
+      <div class="lock-mark"><i data-lucide="lock-keyhole"></i></div>
+      <h1>Area dos proprietarios</h1>
+      <form id="loginForm"><label>E-mail<input name="email" type="email" autocomplete="email" required placeholder="seu@email.com" /></label><button type="submit"><i data-lucide="mail"></i> Receber link de acesso</button></form>
+    </section>
+    <section id="dashboard" hidden>
+      <div class="page-title"><div><span id="account"></span><h1>Catalogo</h1></div><button id="logout" type="button" class="secondary"><i data-lucide="log-out"></i> Sair</button></div>
+      <nav class="admin-tabs" aria-label="Gestao"><button type="button" data-tab="products" aria-pressed="true">Produtos</button><button type="button" data-tab="owners" aria-pressed="false">Proprietarios</button></nav>
+      <div id="productsPanel">
+        <div class="catalog-toolbar"><label class="search-label"><i data-lucide="search"></i><input id="adminSearch" type="search" placeholder="Buscar produto" aria-label="Buscar produto" /></label><span id="productCount"></span><button id="newProduct" type="button"><i data-lucide="plus"></i> Novo produto</button></div>
+        <div id="productList" class="product-list"></div>
+      </div>
+      <div id="ownersPanel" hidden>
+        <h2>Proprietarios autorizados</h2>
+        <ul id="ownerList"></ul>
+        <form id="ownerForm" class="owner-form"><label>Novo proprietario<input type="email" name="email" required autocomplete="off" placeholder="email@empresa.com" /></label><button type="submit"><i data-lucide="user-plus"></i> Autorizar e-mail</button></form>
+      </div>
+    </section>
+  </main>
+  <dialog id="editor" aria-labelledby="editorTitle">
+    <form id="productForm">
+      <div class="dialog-title"><h2 id="editorTitle">Novo produto</h2><button type="button" id="closeEditor" class="icon-button secondary" aria-label="Fechar editor" title="Fechar editor"><i data-lucide="x"></i></button></div>
+      <input name="id" type="hidden" /><input name="updated_at" type="hidden" />
+      <div class="editor-grid">
+        <div class="photo-field"><img id="photoPreview" alt="Foto do produto" hidden /><label class="upload-label"><i data-lucide="image-plus"></i> Foto do produto<input id="photoFile" type="file" accept="image/jpeg,image/png,image/webp" /></label><span>JPG, PNG ou WebP. Ate 5 MB.</span><label>URL da foto<input name="image_url" type="text" maxlength="1000" placeholder="https://..." /></label></div>
+        <div class="fields"><label>Nome do produto<input name="name" required minlength="2" maxlength="120" /></label><label>Categoria<select name="category"><option value="vitaminas">Vitaminas</option><option value="suplementos">Suplementos</option><option value="naturais">Naturais</option></select></label><label>Descricao<textarea name="description" rows="3" maxlength="1200"></textarea></label>
+          <div class="field-pair"><label>Preco normal (R$)<input name="price" type="number" min="0.01" max="999999" step="0.01" required /></label><label>Tipo de oferta<select name="offer_type"><option value="none">Sem oferta</option><option value="percent">Desconto percentual (%)</option><option value="fixed">Desconto em reais (R$)</option></select></label></div>
+          <div class="field-pair"><label>Valor do desconto<input name="offer_value" type="number" min="0" step="0.01" value="0" /></label><label>Nome da oferta<input name="offer_label" maxlength="60" placeholder="Oferta da semana" /></label></div>
+          <output id="offerPreview"></output>
+          <label>Link publico do checkout no Bling<input name="checkout_url" type="url" maxlength="2000" placeholder="https://..." /></label>
+          <div class="field-pair"><label>Ordem no catalogo<input name="position" type="number" min="0" max="10000" value="0" /></label><label class="check-label"><input type="checkbox" name="published" /> Publicado na loja</label></div>
+        </div>
+      </div>
+      <p id="editorStatus" role="status"></p><div class="dialog-actions"><button type="button" id="cancelEditor" class="secondary">Cancelar</button><button type="submit" id="saveProduct"><i data-lucide="save"></i> Salvar produto</button></div>
+    </form>
+  </dialog>
+  <script src="assets/lucide.min.js"></script>
+  <script src="assets/supabase.min.js"></script>
+  <script src="catalog.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

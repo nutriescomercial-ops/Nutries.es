@@ -1,3 +1,5 @@
+(async function () {
+await window.nutriesCatalogReady;
 const filters = document.querySelectorAll('.filter');
 const cards = document.querySelectorAll('.product-card');
 const menuToggle = document.querySelector('.menu-toggle');
@@ -207,7 +209,7 @@ document.addEventListener('visibilitychange', restartSlider);
 
 function productFromCard(card) {
   return {
-    id: card.dataset.name,
+    id: card.dataset.id || card.dataset.name,
     name: card.dataset.name,
     price: Number(card.dataset.price),
     image: card.querySelector('img')?.getAttribute('src') || ''
@@ -263,17 +265,18 @@ function renderCart() {
     return;
   }
 
+  const escape = window.NutriesCatalog.escape;
   cartItems.innerHTML = items.map((item) => `
     <article class="cart-item">
-      <img src="${item.image}" alt="${item.name}" />
+      <img src="${escape(item.image)}" alt="${escape(item.name)}" />
       <div>
-        <strong>${item.name}</strong>
+        <strong>${escape(item.name)}</strong>
         <span>${money.format(item.price)} cada</span>
       </div>
-      <div class="qty-controls" aria-label="Quantidade de ${item.name}">
-        <button type="button" data-cart-action="decrease" data-id="${item.id}" aria-label="Diminuir quantidade">-</button>
+      <div class="qty-controls" aria-label="Quantidade de ${escape(item.name)}">
+        <button type="button" data-cart-action="decrease" data-id="${escape(item.id)}" aria-label="Diminuir quantidade">-</button>
         <strong>${item.quantity}</strong>
-        <button type="button" data-cart-action="increase" data-id="${item.id}" aria-label="Aumentar quantidade">+</button>
+        <button type="button" data-cart-action="increase" data-id="${escape(item.id)}" aria-label="Aumentar quantidade">+</button>
       </div>
     </article>
   `).join('');
@@ -351,3 +354,4 @@ if (slides.length) {
 applyCatalogFilters();
 renderCart();
 filters.forEach((button) => button.setAttribute('aria-pressed', String(button.classList.contains('is-active'))));
+})();

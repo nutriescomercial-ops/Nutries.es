@@ -1,0 +1,7 @@
+node_modules
+tests
+docs
+supabase
+server.js
+*.log
+.env*

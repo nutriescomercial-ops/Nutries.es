@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const root = __dirname;
-const port = 3030;
+const port = Number(process.env.PORT || 3030);
 
 const mime = {
   '.html': 'text/html; charset=utf-8',
@@ -18,11 +18,20 @@ const mime = {
 };
 
 http.createServer((req, res) => {
-  let reqPath = decodeURIComponent(req.url.split('?')[0]);
+  let reqPath;
+  try { reqPath = decodeURIComponent(req.url.split('?')[0]); } catch { res.writeHead(400); res.end('Bad request'); return; }
+  if (reqPath === '/api/config') {
+    res.status = (code) => { res.statusCode = code; return res; };
+    res.json = (value) => { res.setHeader('Content-Type','application/json'); res.end(JSON.stringify(value)); };
+    require('./api/config')(req,res);
+    return;
+  }
   if (reqPath === '/') reqPath = '/index.html';
+  if (reqPath === '/admin') reqPath = '/admin.html';
 
   const filePath = path.join(root, reqPath);
-  if (!filePath.startsWith(root)) {
+  const relative = path.relative(root,filePath);
+  if (relative.startsWith('..') || path.isAbsolute(relative) || /(^|[\\/])\./.test(relative) || ['api','supabase','tests','docs'].includes(relative.split(path.sep)[0])) {
     res.writeHead(403);
     res.end('Forbidden');
     return;
