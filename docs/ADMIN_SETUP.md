@@ -2,6 +2,14 @@
 
 O frontend esta em `/admin`. A autorizacao e aplicada no Postgres/Storage por RLS, nao pelo HTML nem pelo e-mail digitado. O primeiro proprietario e `nutriescomercial@gmail.com`. Nao ha senha padrao ou modo de administracao local.
 
+## Estado em 08/11/2026
+
+- Producao: `nutries-es.com.br` na Vercel (projeto `crie-o-site-segundo-modelo-para`, publicado pela Vercel CLI, sem integracao com Git). Este repositorio passou a refletir o deploy de 27/10/2026 (`dpl_5mgfReYMjvhWYAAiZ9VM4kkyaS3Q`). Publique sempre a partir daqui.
+- Login do painel: e-mail e senha (`signInWithPassword`), com "Definir ou recuperar senha" por e-mail. Acesso do proprietario validado em producao em 08/11/2026.
+- Supabase `pbetznucstwbhoatqpgz` no plano gratuito: o projeto e pausado apos cerca de 7 dias sem uso e o site perde login e catalogo dinamico. Ja aconteceu uma vez; foi retomado em 08/11/2026.
+- Sem SMTP proprio, o Supabase so envia e-mails de autenticacao para membros da equipe da organizacao. Por isso os links nunca chegavam a `nutriescomercial@gmail.com`. Recuperacao de senha por e-mail so funciona depois de configurar SMTP (Auth > Emails > SMTP Settings).
+- Pendente: SMTP, desativar cadastro publico (Auth > Sign In / Providers), decidir plano do Supabase.
+
 ## Ativacao
 
 1. Criar ou selecionar um projeto Supabase sob a conta da NutriES. Nao foi criado automaticamente nem contratado um plano.
