@@ -14,12 +14,14 @@
     <section id="login" hidden class="login-panel">
       <div class="lock-mark"><i data-lucide="lock-keyhole"></i></div>
       <h1>Area dos proprietarios</h1>
-      <form id="loginForm"><label>E-mail<input name="email" type="email" autocomplete="email" required placeholder="seu@email.com" /></label><button type="submit"><i data-lucide="mail"></i> Receber link de acesso</button></form>
+      <form id="loginForm"><label>E-mail<input name="email" type="email" autocomplete="username" required placeholder="seu@email.com" /></label><label>Senha<input name="password" type="password" autocomplete="current-password" required /></label><button type="submit">Entrar</button><button id="recoverPassword" type="button" class="secondary">Definir ou recuperar senha</button></form>
+      <form id="passwordForm" hidden><p>Defina uma senha exclusiva para o painel da NutriES.</p><label>Nova senha<input name="password" type="password" autocomplete="new-password" minlength="12" required /></label><label>Repita a senha<input name="confirm" type="password" autocomplete="new-password" minlength="12" required /></label><button type="submit">Salvar senha</button></form>
     </section>
     <section id="dashboard" hidden>
       <div class="page-title"><div><span id="account"></span><h1>Catalogo</h1></div><button id="logout" type="button" class="secondary"><i data-lucide="log-out"></i> Sair</button></div>
       <nav class="admin-tabs" aria-label="Gestao"><button type="button" data-tab="products" aria-pressed="true">Produtos</button><button type="button" data-tab="owners" aria-pressed="false">Proprietarios</button></nav>
       <div id="productsPanel">
+        <details class="checkout-guide"><summary>Como ligar um produto ao checkout da NutriES</summary><ol><li>Cadastre o produto no Bling e publique-o na loja online vinculada.</li><li>Abra a página pública desse produto na loja e copie o endereço. Não copie o endereço do painel do Bling nem de um carrinho com sessão.</li><li>Aqui, crie ou edite o mesmo produto e cole o endereço no campo “Link de compra deste produto”.</li><li>Use “Conferir destino” e compare nome, apresentação, quantidade e variação. Depois salve com “Publicado na loja” marcado.</li></ol><p>O botão Comprar abrirá exatamente esse endereço. Sem link, o site oferece consulta pelo WhatsApp. Preço, foto e disponibilidade não são sincronizados automaticamente com o Bling; mantenha o cadastro atualizado. O pagamento acontece na loja de destino.</p></details>
         <div class="catalog-toolbar"><label class="search-label"><i data-lucide="search"></i><input id="adminSearch" type="search" placeholder="Buscar produto" aria-label="Buscar produto" /></label><span id="productCount"></span><button id="newProduct" type="button"><i data-lucide="plus"></i> Novo produto</button></div>
         <div id="productList" class="product-list"></div>
       </div>
@@ -40,7 +42,7 @@
           <div class="field-pair"><label>Preco normal (R$)<input name="price" type="number" min="0.01" max="999999" step="0.01" required /></label><label>Tipo de oferta<select name="offer_type"><option value="none">Sem oferta</option><option value="percent">Desconto percentual (%)</option><option value="fixed">Desconto em reais (R$)</option></select></label></div>
           <div class="field-pair"><label>Valor do desconto<input name="offer_value" type="number" min="0" step="0.01" value="0" /></label><label>Nome da oferta<input name="offer_label" maxlength="60" placeholder="Oferta da semana" /></label></div>
           <output id="offerPreview"></output>
-          <label>Link publico do checkout no Bling<input name="checkout_url" type="url" maxlength="2000" placeholder="https://..." /></label>
+          <fieldset class="checkout-field"><legend>Compra online</legend><label>Link de compra deste produto<input name="checkout_url" type="url" maxlength="2000" placeholder="https://sua-loja.com.br/categoria/produto" aria-describedby="checkoutHelp checkoutStatus" /></label><p id="checkoutHelp">Cole a página pública do mesmo produto na loja vinculada ao Bling. Exemplo: B12 deve abrir a B12, na mesma apresentação. Deixe vazio para receber consultas.</p><p id="checkoutStatus" role="status"></p><a id="checkoutPreview" class="secondary" target="_blank" rel="noopener noreferrer" hidden>Conferir destino ↗</a></fieldset>
           <div class="field-pair"><label>Ordem no catalogo<input name="position" type="number" min="0" max="10000" value="0" /></label><label class="check-label"><input type="checkbox" name="published" /> Publicado na loja</label></div>
         </div>
       </div>

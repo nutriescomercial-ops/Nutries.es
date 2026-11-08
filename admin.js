@@ -3,6 +3,9 @@
   const $ = (id) => document.getElementById(id);
   const money = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' });
   const form = $('productForm');
+  const authReturn = new URLSearchParams(location.hash.slice(1));
+  const authReturnError = authReturn.has('error');
+  let recovering = authReturn.get('type') === 'recovery';
   let db, products = [], authorized = false, uploadFile = null, previewUrl = null, dirty = false, saving = false;
   function icons() { window.lucide?.createIcons(); }
   function status(message, error = false, target = 'status') { $(target).textContent = message; $(target).classList.toggle('error', error); }
@@ -11,7 +14,7 @@
     const query = $('adminSearch').value.trim().toLocaleLowerCase('pt-BR');
     const filtered = products.filter(p => p.name.toLocaleLowerCase('pt-BR').includes(query));
     $('productCount').textContent = `${filtered.length} ${filtered.length === 1 ? 'produto' : 'produtos'}`;
-    $('productList').innerHTML = filtered.length ? filtered.map(p => `<article class="product-row"><img src="${escape(safeUrl(p.image_url,true))}" alt="${escape(p.name)}" /><div><strong>${escape(p.name)}</strong><small>${escape(p.category)}</small></div><div class="price-cell">${p.offer_type !== 'none' ? `<del>${money.format(p.price)}</del>` : ''}<strong>${money.format(finalPrice(p))}</strong></div><span class="state ${p.published ? '' : 'draft'}">${p.published ? 'Publicado' : 'Rascunho'}</span><button class="secondary" type="button" data-edit="${escape(p.id)}"><i data-lucide="pencil"></i> Editar</button></article>`).join('') : '<p class="empty-list">Nenhum produto encontrado.</p>';
+    $('productList').innerHTML = filtered.length ? filtered.map(p => `<article class="product-row"><img src="${escape(safeUrl(p.image_url,true))}" alt="${escape(p.name)}" /><div><strong>${escape(p.name)}</strong><small>${escape(p.category)}</small><small>${p.checkout_url ? "Link de compra cadastrado" : "Sem link · somente consulta"}</small></div><div class="price-cell">${p.offer_type !== 'none' ? `<del>${money.format(p.price)}</del>` : ''}<strong>${money.format(finalPrice(p))}</strong></div><span class="state ${p.published ? '' : 'draft'}">${p.published ? 'Publicado' : 'Rascunho'}</span><button class="secondary" type="button" data-edit="${escape(p.id)}"><i data-lucide="pencil"></i> Editar</button></article>`).join('') : '<p class="empty-list">Nenhum produto encontrado.</p>';
     icons();
   }
   async function loadProducts() {
@@ -27,14 +30,24 @@
   async function authenticate() {
     lock(); status('Verificando acesso...');
     const { data, error } = await db.auth.getUser();
-    if (error || !data.user) { status('Entre com um e-mail autorizado.'); return; }
+    if (error || !data.user) { status(authReturnError ? 'Este link expirou ou ja foi utilizado. Entre com sua senha ou use Definir ou recuperar senha.' : 'Entre com seu e-mail e senha.', authReturnError); return; }
     const { data: owners, error: ownerError } = await db.from('store_owners').select('email').eq('email', data.user.email.toLowerCase());
     if (ownerError) { status('Nao foi possivel verificar as permissoes. Tente recarregar.',true); return; }
     if (!owners?.length) { await db.auth.signOut(); status('Este e-mail nao esta autorizado a administrar a loja.',true); return; }
+    if (recovering) { $('loginForm').hidden = true; $('passwordForm').hidden = false; status('Defina sua senha para continuar.'); return; }
     authorized = true; $('login').hidden = true; $('dashboard').hidden = false; $('account').textContent = data.user.email;
     try { await loadProducts(); await loadOwners(); status(''); } catch { lock(); status('Nao foi possivel carregar a administracao. Tente recarregar.',true); }
   }
   function clearPreview() { if (previewUrl) URL.revokeObjectURL(previewUrl); previewUrl = null; }
+  function updateCheckout() {
+    const value = form.elements.checkout_url.value.trim();
+    const url = safeUrl(value);
+    const internal = url && /(^|\.)bling\.com\.br$/.test(new URL(url).hostname);
+    const usable = url && !internal;
+    $('checkoutPreview').hidden = !usable;
+    if (usable) $('checkoutPreview').href = url; else $('checkoutPreview').removeAttribute('href');
+    $('checkoutStatus').textContent = !value ? 'Sem vínculo: o cliente verá Consultar.' : !usable ? 'Use uma página pública HTTPS do produto, fora do painel interno do Bling.' : 'Link preenchido. Confira o produto no destino antes de salvar; o sistema não verifica a correspondência automaticamente.';
+  }
   function showPhoto(url) { $('photoPreview').hidden = !url; $('photoPreview').src = url || ''; }
   function updateOffer() {
     form.elements.offer_value.disabled = form.elements.offer_type.value === 'none';
@@ -51,7 +64,7 @@
       if (key === 'published') form.elements[key].checked = value; else form.elements[key].value = value;
     }
     $('editorTitle').textContent = product ? 'Editar produto' : 'Novo produto';
-    showPhoto(safeUrl(product?.image_url || '',true)); updateOffer(); $('editor').showModal();
+    showPhoto(safeUrl(product?.image_url || '',true)); updateOffer(); updateCheckout(); $('editor').showModal();
   }
   function closeEditor() {
     if (saving) return;
@@ -62,10 +75,37 @@
     event.preventDefault(); const button = event.submitter; button.disabled = true;
     try {
       const email = new FormData(event.target).get('email').trim().toLowerCase();
-      const { error } = await db.auth.signInWithOtp({ email, options: { emailRedirectTo: `${location.origin}/admin`, shouldCreateUser:true } });
+      const { error } = await db.auth.signInWithPassword({ email, password: event.target.elements.password.value });
       if (error) throw error;
-      status('Verifique seu e-mail para concluir o acesso.');
-    } catch { status('Nao foi possivel enviar o link. Aguarde um minuto e tente novamente.',true); }
+      event.target.elements.password.value = '';
+      await authenticate();
+    } catch (error) {
+      const limited = error.status === 429 || ['over_email_send_rate_limit','over_request_rate_limit'].includes(error.code);
+      status(limited ? 'Muitas tentativas. Aguarde antes de tentar novamente.' : error.code === 'email_not_confirmed' ? 'Confirme seu e-mail antes de entrar. Sua conta ainda nao foi ativada.' : 'Nao foi possivel entrar. Confira e-mail e senha. Se ainda nao definiu uma senha, use Definir ou recuperar senha.',true);
+    }
+    finally { button.disabled = false; }
+  });
+  $('recoverPassword').addEventListener('click', async () => {
+    const field = $('loginForm').elements.email;
+    if (!field.reportValidity()) return;
+    const button = $('recoverPassword'); button.disabled = true;
+    try {
+      const { error } = await db.auth.resetPasswordForEmail(field.value.trim().toLowerCase(), {redirectTo: `${location.origin}/admin`});
+      if (error) throw error;
+      status('Solicitacao aceita. Confira o e-mail mais recente para definir sua senha. Nao solicite outro link agora.');
+    } catch(error) { status(error.status === 429 ? 'O servico de e-mail esta temporariamente limitado. Nenhum link novo foi enviado. Quem ja tem senha pode entrar normalmente.' : 'Nao foi possivel solicitar a recuperacao. Tente mais tarde.',true); }
+    finally { button.disabled = false; }
+  });
+  $('passwordForm').addEventListener('submit', async event => {
+    event.preventDefault(); const fields = event.target.elements; const button = event.submitter;
+    if (fields.password.value.length < 12 || fields.password.value !== fields.confirm.value) { status('Use pelo menos 12 caracteres e repita a mesma senha.',true); return; }
+    button.disabled = true;
+    try {
+      const {error} = await db.auth.updateUser({password:fields.password.value});
+      if(error) throw error;
+      event.target.reset(); recovering = false; $('passwordForm').hidden = true; $('loginForm').hidden = false;
+      await authenticate();
+    } catch { status('Nao foi possivel salvar a senha. O link pode ter expirado.',true); }
     finally { button.disabled = false; }
   });
   $('logout').addEventListener('click', async () => { const { error } = await db.auth.signOut(); if (error) { status('Nao foi possivel sair. Tente novamente.',true); return; } lock(); status('Sessao encerrada.'); });
@@ -75,6 +115,7 @@
   ['closeEditor','cancelEditor'].forEach(id => $(id).addEventListener('click',closeEditor));
   $('editor').addEventListener('cancel',event => { event.preventDefault(); closeEditor(); });
   form.addEventListener('input',() => { dirty = true; updateOffer(); });
+  form.elements.checkout_url.addEventListener('input', updateCheckout);
   form.elements.image_url.addEventListener('change', () => { if (!uploadFile) showPhoto(safeUrl(form.elements.image_url.value,true)); });
   $('photoFile').addEventListener('change', () => {
     clearPreview(); uploadFile = null;
